@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using WpfApp_TransformEreditarieta.Classi;
 
-
-
-namespace WpfApp_Transform
+namespace WpfApp_TransformEreditarieta
 {
     // Programmato da Andrea Maria Castronovo - 4I - Data Inizio: 16/01/2023 - Data Consegna: ?
 
@@ -73,7 +71,7 @@ namespace WpfApp_Transform
                     ),
                     cnvForesta,
                     0,
-                    400
+                    0
                 )
             };
         }
@@ -83,9 +81,14 @@ namespace WpfApp_Transform
             foreach (OggettoBase sprite in _sprites)
             {
                 sprite.Step();
+                sprite.Renderizza(cnvForesta);
             }
         }
 
+        private void btnReset_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         
 
         #region Vecchia roba
