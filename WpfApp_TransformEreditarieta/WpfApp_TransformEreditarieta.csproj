@@ -65,6 +65,7 @@
     </Compile>
     <Compile Include="Classi\OggettoBase.cs" />
     <Compile Include="Classi\OggettoLieveMovimento.cs" />
+    <Compile Include="Classi\OggettoMovimentoOrizzontale.cs" />
     <Compile Include="Enum\Direzione.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
