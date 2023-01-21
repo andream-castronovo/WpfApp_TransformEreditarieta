@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+using WpfApp_TransformEreditarieta.Enum;
 
 namespace WpfApp_TransformEreditarieta.Classi
 {
     class OggettoLieveMovimento : OggettoBase
     {
         double _startX;
-        double _startY;
-        bool destra;
+        bool _destra;
 
-        public OggettoLieveMovimento(Uri source, Canvas background, double x, double y) : base (source, background, x, y)
-        { 
+        public OggettoLieveMovimento(Uri source, Canvas background, double x, double y) : base(source, background, x, y)
+        {
             _startX = x;
-            _startY = y;
-
-            destra = true;
+            _destra = true;
         }
 
         public override void Step()
         {
-            if (X == _startX + 10)
-                destra = false;
-            else if (X == _startX - 10)
-                destra = true;
+            if (X >= _startX + 10)
+                _destra = false;
+            else if (X <= _startX - 10)
+                _destra = true;
 
-            X = destra ? X++ : X--;
+            TranslateTransform tt = new TranslateTransform(_destra ? X += 0.6 : X -= 0.6, 0);
+            RenderizzaModifiche(tt);
+
         }
     }
 }

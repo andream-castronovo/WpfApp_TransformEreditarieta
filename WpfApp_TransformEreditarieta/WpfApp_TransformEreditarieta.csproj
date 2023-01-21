@@ -104,5 +104,8 @@
     <Resource Include="Immagini\muschio.png" />
     <Resource Include="Immagini\right-rotate-icon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Immagini\bug.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -66,22 +66,21 @@ namespace WpfApp_TransformEreditarieta
         {
             _sprites = new List<OggettoBase>
             { // Equivalente a _sprites.Add(...);
-                new OggettoBase(new Uri(
-                    "/Immagini/muschio.png", UriKind.RelativeOrAbsolute
-                    ),
+                new OggettoLieveMovimento(
+                    new Uri (
+                        "/Immagini/bug.png", UriKind.RelativeOrAbsolute
+                    ), 
                     cnvForesta,
                     0,
                     0
                 )
             };
         }
-
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
             foreach (OggettoBase sprite in _sprites)
             {
                 sprite.Step();
-                sprite.Renderizza(cnvForesta);
             }
         }
 
