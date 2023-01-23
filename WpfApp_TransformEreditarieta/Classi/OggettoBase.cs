@@ -14,8 +14,12 @@ namespace WpfApp_TransformEreditarieta.Classi
         Image _img;
         double _x;
         double _y;
+        TransformGroup _tg;
         
-        public OggettoBase(Uri source, Canvas background, double x, double y) 
+
+        public OggettoBase(Uri source, Canvas background, double x, double y) : this (source, background, x, y, 100) { }
+
+        public OggettoBase(Uri source, Canvas background, double x, double y, double width)
         {
             _x = x;
             _y = y;
@@ -24,11 +28,12 @@ namespace WpfApp_TransformEreditarieta.Classi
 
             _img = new Image();
             _img.Source = btm;
-            _img.Margin = new Thickness(x, y, 0, 0);
-
-            _img.Width = 100;
+            _img.Width = width;
 
             background.Children.Add(_img);
+
+            _tg = new TransformGroup();
+
         }
 
         public virtual void Step()
@@ -39,14 +44,62 @@ namespace WpfApp_TransformEreditarieta.Classi
             // Lo step deve essere breve per consentire fluidità nel movimento
         }
 
-        public virtual void RenderizzaModifiche(Transform t)
+        public void RenderizzaModifiche(Transform t)
         {
             // Questo oggetto statico non deve renderizzare nessuna modifica
 
-            _img.RenderTransform = t;
+            if (t.GetType() != typeof(TransformGroup))
+            {
+                for (int i = 0; i < _tg.Children.Count; i++)
+                {
+                    if (_tg.Children[i].GetType() == t.GetType())
+                    {
+                        _tg.Children.RemoveAt(i);
+                    }
+
+                }
+                _tg.Children.Add(t);
+            }
+            else
+                _tg = t as TransformGroup;
+
+
+            _img.RenderTransform = _tg;
         }
 
-        public double X { get => _x; set => _x = value; }
-        public double Y { get => _y; set => _y = value; }
+        public double X 
+        { 
+            get => _x;
+            set
+            {
+                _x = value;
+                RenderizzaModifiche(new TranslateTransform(value, Y));
+            }
+        }
+        
+        public double Y 
+        { 
+            get => _y;
+            set
+            {
+                _y = value;
+                RenderizzaModifiche(new TranslateTransform(X, value));
+            }
+        }
+
+        public double Width
+        {
+            get => _img.ActualWidth;
+        }
+
+        public double Height
+        {
+            get => _img.ActualHeight;
+        }
+
+        public Transform RenderInfos
+        {
+            get => _img.RenderTransform;
+        }
     }
 }

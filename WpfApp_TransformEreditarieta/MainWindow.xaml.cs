@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Management.Instrumentation;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Threading;
@@ -72,8 +73,16 @@ namespace WpfApp_TransformEreditarieta
                     ), 
                     cnvForesta,
                     0,
-                    0
-                )
+                    0,
+                    100
+                ),
+                new OggettoMovimentoOrizzontale(
+                    new Uri("/Immagini/fox.png", UriKind.RelativeOrAbsolute),
+                    cnvForesta,
+                    0,
+                    120,
+                    160
+                    )
             };
         }
         private void DispatcherTimer_Tick(object sender, EventArgs e)
