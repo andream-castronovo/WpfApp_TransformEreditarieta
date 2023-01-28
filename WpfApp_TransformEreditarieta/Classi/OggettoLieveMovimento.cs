@@ -19,14 +19,14 @@ namespace WpfApp_TransformEreditarieta.Classi
         public OggettoLieveMovimento(Uri source, Canvas background, double x, double y, double width) : base(source, background, x, y, width)
         {
             _startX = x;
-            Destra = true;
+            Destra = false;
         }
 
         public override void Step()
         {
-            if (X >= _startX + 10)
+            if (X >= _startX + 30)
                 Destra = false;
-            else if (X <= _startX - 10)
+            else if (X <= _startX - 30)
                 Destra = true;
 
             if (_destra)
@@ -45,6 +45,9 @@ namespace WpfApp_TransformEreditarieta.Classi
                 RenderizzaModifiche(
                         new ScaleTransform(value ? -1 : 1, 1)
                     );
+
+                X += value ? Width : -Width;
+
             }
 
         }
