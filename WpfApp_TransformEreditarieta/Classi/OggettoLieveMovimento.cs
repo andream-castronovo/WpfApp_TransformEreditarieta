@@ -44,19 +44,19 @@ namespace WpfApp_TransformEreditarieta.Classi
             if (Orientamento == Orientamento.Orizzontale)
             {
                 if (
-                    X > _start + _maxX + Width
+                    X > _start + _maxX + Width // Non andare oltre il limite
                     ||
-                    X > Schermo.ActualWidth
+                    X > Schermo.ActualWidth // E neanche oltre il bordo dello schermo
                     )
                     Destra = false;
                 else if (
-                    X < _start - _maxX
+                    X < _start - _maxX // Stessa cosa
                     ||
                     X < 0
                     )
                     Destra = true;
 
-                if (_destra)
+                if (_destra) // Se devi andare a destra aggiungi, altrimenti sottrai
                     X += _deltaX;
                 else
                     X -= _deltaX;
@@ -64,7 +64,7 @@ namespace WpfApp_TransformEreditarieta.Classi
             else
             {
                 if (
-                    Y > _start + _maxY
+                    Y > _start + _maxY // Stesso ragionamento di prima
                     ||
                     Y > Schermo.ActualHeight
                     )
@@ -92,10 +92,12 @@ namespace WpfApp_TransformEreditarieta.Classi
             {
                 _destra = value;
 
+                // Renderizzo il cambio di scala per far specchiare lo sprite
                 RenderizzaModifiche(
                         new ScaleTransform(value ? -1 : 1, 1)
                     );
 
+                // Per far specchiare lo sprite sul suo asse
                 X += value ? Width : -Width;
 
             }
@@ -108,6 +110,8 @@ namespace WpfApp_TransformEreditarieta.Classi
         {
             get => _basso;
             set => _basso = value;
+            // Qui non serve nessun codice nel set perché non cambio sprite
+            // quando cambia direzione verticale
         }
 
         private protected Canvas Schermo { get; set; }

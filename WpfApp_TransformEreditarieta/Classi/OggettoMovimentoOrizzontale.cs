@@ -20,19 +20,19 @@ namespace WpfApp_TransformEreditarieta.Classi
 
             if (Orientamento == Orientamento.Orizzontale)
             {
-                if (X > Schermo.ActualWidth)
+                if (X > Schermo.ActualWidth) // Se esce da destra
                     Destra = false;
-                else if (X < 0)
+                else if (X < 0) // Se esce da sinistra
                     Destra = true;
 
-                if (Destra)
+                if (Destra) // Se devi andare a destra aggiungi, altrimenti sottrai
                     X += 2;
                 else
                     X -= 2;
             }
             else
             {
-                if (Y > Schermo.ActualHeight - Height)
+                if (Y > Schermo.ActualHeight - Height) // Stesso ragionamento di prima ma con l'altezza
                     Basso = false;
                 else if (Y < 0)
                     Basso = true;

@@ -96,7 +96,17 @@ namespace WpfApp_TransformEreditarieta
                     (cnvForesta.ActualWidth/2)-40,
                     cnvForesta.ActualHeight,
                     150
-                    )
+                    ),
+                new OggettoLieveMovimento(
+                    new Uri (
+                        "/Immagini/bug.png", UriKind.RelativeOrAbsolute
+                    ),
+                    cnvForesta,
+                    cnvForesta.ActualWidth/2,
+                    20,
+                    80,
+                    Enum.Orientamento.Orizzontale
+                    ),
 
             };
         }
