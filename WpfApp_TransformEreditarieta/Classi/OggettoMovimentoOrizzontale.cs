@@ -1,37 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Controls;
-using System.Windows.Media;
+using WpfApp_TransformEreditarieta.Enum;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace WpfApp_TransformEreditarieta.Classi
 {
-    class OggettoMovimentoOrizzontale : OggettoLieveMovimento
+    class OggettoMovimentoBordi : OggettoLieveMovimento
     {
         // La classe deve permettere un movimento per tutto lo schermo avanti e indietro
 
-        Canvas _schermo; // Per non uscire dallo schermo
+        public OggettoMovimentoBordi(Uri source, Canvas background, double x, double y) : this(source, background, x, y, 100, Orientamento.Orizzontale) { }
 
-        public OggettoMovimentoOrizzontale(Uri source, Canvas background, double x, double y) : this(source, background, x, y, 100) { }
-
-        public OggettoMovimentoOrizzontale (Uri source, Canvas background, double x, double y, double width) : base (source, background, x, y, width)
-        {
-            _schermo = background;
-        }
+        public OggettoMovimentoBordi(Uri source, Canvas background, double x, double y, double width, Orientamento o) : base(source, background, x, y, width, o) { }
 
         public override void Step()
         {
-            if (X > _schermo.ActualWidth)
-                Destra = false;
-            else if (X < 0)
-                Destra = true;
 
-            if (Destra)
-                X += 2;
+            if (Orientamento == Orientamento.Orizzontale)
+            {
+                if (X > Schermo.ActualWidth)
+                    Destra = false;
+                else if (X < 0)
+                    Destra = true;
+
+                if (Destra)
+                    X += 2;
+                else
+                    X -= 2;
+            }
             else
-                X -= 2;
+            {
+                if (Y > Schermo.ActualHeight - Height)
+                    Basso = false;
+                else if (Y < 0)
+                    Basso = true;
+
+                if (Basso)
+                    Y += 2;
+                else
+                    Y -= 2;
+            }
         }
     }
 }

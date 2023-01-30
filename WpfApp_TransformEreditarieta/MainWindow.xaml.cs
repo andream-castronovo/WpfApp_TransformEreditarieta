@@ -74,15 +74,24 @@ namespace WpfApp_TransformEreditarieta
                     cnvForesta,
                     0,
                     0,
-                    100
+                    100,
+                    Enum.Orientamento.Verticale
                 ),
-                new OggettoMovimentoOrizzontale(
+                new OggettoMovimentoBordi(
                     new Uri("/Immagini/fox.png", UriKind.RelativeOrAbsolute),
                     cnvForesta,
                     0,
                     120,
-                    160
-                    )
+                    160,
+                    Enum.Orientamento.Verticale
+                    ),
+                 //new OggettoBase(
+                 //   new Uri("/Immagini/muschio.png", UriKind.RelativeOrAbsolute),
+                 //   cnvForesta,
+                 //   200,
+                 //   190,
+                 //   160
+                 //   ),
             };
         }
         private void DispatcherTimer_Tick(object sender, EventArgs e)

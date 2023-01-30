@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -10,29 +11,80 @@ namespace WpfApp_TransformEreditarieta.Classi
 {
     class OggettoLieveMovimento : OggettoBase
     {
-        double _startX;
+        double _start;
         bool _destra;
+        bool _basso;
+
+        const double _maxX = 30;
+        const double _maxY = 10;
+
+        const double _deltaX = 0.6;
+        const double _deltaY = 0.6;
 
 
-        public OggettoLieveMovimento(Uri source, Canvas background, double x, double y) : this(source, background, x, y, 100) { }
+        public OggettoLieveMovimento(Uri source, Canvas background, double x, double y) : this(source, background, x, y, 100, Orientamento.Orizzontale) { }
         
-        public OggettoLieveMovimento(Uri source, Canvas background, double x, double y, double width) : base(source, background, x, y, width)
+        public OggettoLieveMovimento(Uri source, Canvas background, double x, double y, double width, Orientamento o) : base(source, background, x, y, width)
         {
-            _startX = x;
+            if (o == Orientamento.Orizzontale)
+                _start = x;
+            else
+                _start = y;
+            
             Destra = false;
+            Basso = true;
+
+            Orientamento = o;
+            Schermo = background;
+
         }
 
         public override void Step()
         {
-            if (X >= _startX + 30)
-                Destra = false;
-            else if (X <= _startX - 30)
-                Destra = true;
+            
 
-            if (_destra)
-                X += 0.6;
+            if (Orientamento == Orientamento.Orizzontale)
+            {
+                if (
+                    X > _start + _maxX + (_destra ? Width : 0)
+                    ||
+                    X > Schermo.ActualWidth
+                    )
+                    Destra = false;
+                else if (
+                    X < _start - _maxX + (_destra ? Width : 0)
+                    ||
+                    X < 0
+                    )
+                    Destra = true;
+
+                if (_destra)
+                    X += _deltaX;
+                else
+                    X -= _deltaX;
+            }
             else
-                X -= 0.6;
+            {
+                if (
+                    Y > _start + _maxY + (_basso ? Height : 0)
+                    ||
+                    Y > Schermo.ActualHeight
+                    )
+                    Basso = false;
+                else if (
+                    Y < _start - _maxY + (_basso ? Height : 0)
+                    ||
+                    Y < 0
+                    )
+                    Basso = true;
+
+                if (_basso)
+                    Y += _deltaY;
+                else
+                    Y -= _deltaY;
+
+            }
+
         }
 
         private protected bool Destra 
@@ -52,6 +104,16 @@ namespace WpfApp_TransformEreditarieta.Classi
 
         }
 
+        public Orientamento Orientamento { get; set; }
+
+        private protected bool Basso
+        {
+            get => _basso;
+            set => _basso = value;
+        }
+
+        private protected Canvas Schermo { get; set; }
 
     }
+
 }

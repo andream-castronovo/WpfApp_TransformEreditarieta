@@ -97,9 +97,5 @@ namespace WpfApp_TransformEreditarieta.Classi
             get => _img.ActualHeight;
         }
 
-        public Transform RenderInfos
-        {
-            get => _img.RenderTransform;
-        }
     }
 }
