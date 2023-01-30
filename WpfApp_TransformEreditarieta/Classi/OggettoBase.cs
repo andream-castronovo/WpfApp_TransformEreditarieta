@@ -21,9 +21,6 @@ namespace WpfApp_TransformEreditarieta.Classi
 
         public OggettoBase(Uri source, Canvas background, double x, double y, double width)
         {
-            _x = x;
-            _y = y;
-
             BitmapImage btm = new BitmapImage(source);
 
             _img = new Image();
@@ -31,9 +28,18 @@ namespace WpfApp_TransformEreditarieta.Classi
             _img.Width = width;
 
             background.Children.Add(_img);
-
             _tg = new TransformGroup();
 
+            
+            _img.Loaded += (sender, e) =>
+            {
+                if (x >= background.ActualWidth)
+                    x -= Width;
+                if(y >= background.ActualHeight) 
+                    y -= Height;
+                X = x;
+                Y = y;
+            };
         }
 
         public virtual void Step()

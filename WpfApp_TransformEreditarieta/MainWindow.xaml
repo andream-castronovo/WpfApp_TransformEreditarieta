@@ -17,74 +17,11 @@
     <Grid>
         
         <!-- Spazio di movimento immagini -->
-        <Canvas Name="cnvForesta" Margin="10,10,10,70">
+        <Canvas Name="cnvForesta" Margin="10,10,10,10">
             <Canvas.Background>
                 <ImageBrush ImageSource="/Immagini/foresta.png" Stretch="UniformToFill"/>
             </Canvas.Background>
         </Canvas>
-        
-        
-        <!-- Griglia per controlli --> 
-        <Grid Name="grdControls" VerticalAlignment="Bottom" Margin="10,0,10,5" Height="50">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-
-                <Button Name="btnTranslateUp" Margin="1" Grid.Row="0" Grid.Column="1" Content="↑"></Button>
-                <Button Name="btnTranslateLeft" Margin="1" Grid.Row="1" Grid.Column="0" Content="←"></Button>
-                <Button Name="btnTranslateDown" Margin="1" Grid.Row="1" Grid.Column="1" Content="↓"></Button>
-                <Button Name="btnTranslateRight" Margin="1" Grid.Row="1" Grid.Column="2" Content="→"></Button>
-            </Grid>
-
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                
-                <Button Name="btnScaleUp" Grid.Row="0" Content="Scale up"   Width="100" Margin="2"/>
-                <Button Name="btnScaleDown" Grid.Row="1" Content="Scale Down" Width="100" Margin="2"/>
-            </Grid>
-
-            <Grid Grid.Column="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Name="btnRotateLeft" Grid.Column="0" Width="50" Height="50" HorizontalAlignment="Right" Margin="0,0,5,0">
-                    <Image Source="Immagini/left-rotate-icon.png"/>
-                </Button>
-
-                <Button Name="btnRotateRight" Grid.Column="1" Width="50" Height="50" HorizontalAlignment="Left" Margin="5,0,0,0">
-                    <Image Source="Immagini/right-rotate-icon.png"/>
-                </Button>
-
-
-            </Grid>
-            
-            <Grid Grid.Column="3">
-                <Button Name="btnReset" Click="btnReset_Click" Content="Reset" Margin="50,10,50,10"/>
-            </Grid>
-        </Grid>
-
-
-        
         
     </Grid>
 </Window>

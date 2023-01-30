@@ -25,19 +25,6 @@ namespace WpfApp_TransformEreditarieta
         DispatcherTimer _dt;
         List<OggettoBase> _sprites;
 
-        #region Vecchie variabili
-        //double gradi = 0.0;
-
-        //double scalaX = 0.3;
-        //double scalaY = 0.3;
-
-        //const int deltaX = 2;
-        //const int deltaY = 2;
-
-        //const double deltaScaleX = 0.01;
-        //const double deltaScaleY = 0.01;
-        #endregion
-
         // Costruttore
         public MainWindow()
         {
@@ -74,24 +61,43 @@ namespace WpfApp_TransformEreditarieta
                     cnvForesta,
                     0,
                     0,
-                    100,
-                    Enum.Orientamento.Verticale
+                    80,
+                    Enum.Orientamento.Orizzontale
                 ),
                 new OggettoMovimentoBordi(
                     new Uri("/Immagini/fox.png", UriKind.RelativeOrAbsolute),
                     cnvForesta,
                     0,
-                    120,
-                    160,
+                    cnvForesta.ActualHeight,
+                    220,
+                    Enum.Orientamento.Orizzontale
+                    ),
+                new OggettoMovimentoBordi(
+                    new Uri("/Immagini/fox.png",UriKind.RelativeOrAbsolute),
+                    cnvForesta,
+                    cnvForesta.ActualWidth,
+                    cnvForesta.ActualHeight,
+                    220,
+                    Enum.Orientamento.Orizzontale
+                    ),
+                new OggettoLieveMovimento(
+                    new Uri (
+                        "/Immagini/bug.png", UriKind.RelativeOrAbsolute
+                    ),
+                    cnvForesta,
+                    cnvForesta.ActualWidth,
+                    0,
+                    80,
                     Enum.Orientamento.Verticale
                     ),
-                 //new OggettoBase(
-                 //   new Uri("/Immagini/muschio.png", UriKind.RelativeOrAbsolute),
-                 //   cnvForesta,
-                 //   200,
-                 //   190,
-                 //   160
-                 //   ),
+                new OggettoBase(
+                    new Uri("/Immagini/muschio.png", UriKind.RelativeOrAbsolute),
+                    cnvForesta,
+                    (cnvForesta.ActualWidth/2)-40,
+                    cnvForesta.ActualHeight,
+                    150
+                    )
+
             };
         }
         private void DispatcherTimer_Tick(object sender, EventArgs e)
@@ -99,6 +105,7 @@ namespace WpfApp_TransformEreditarieta
             foreach (OggettoBase sprite in _sprites)
             {
                 sprite.Step();
+                
             }
         }
 

@@ -16,7 +16,7 @@ namespace WpfApp_TransformEreditarieta.Classi
         bool _basso;
 
         const double _maxX = 30;
-        const double _maxY = 10;
+        const double _maxY = 30;
 
         const double _deltaX = 0.6;
         const double _deltaY = 0.6;
@@ -41,18 +41,16 @@ namespace WpfApp_TransformEreditarieta.Classi
 
         public override void Step()
         {
-            
-
             if (Orientamento == Orientamento.Orizzontale)
             {
                 if (
-                    X > _start + _maxX + (_destra ? Width : 0)
+                    X > _start + _maxX + Width
                     ||
                     X > Schermo.ActualWidth
                     )
                     Destra = false;
                 else if (
-                    X < _start - _maxX + (_destra ? Width : 0)
+                    X < _start - _maxX
                     ||
                     X < 0
                     )
@@ -66,13 +64,13 @@ namespace WpfApp_TransformEreditarieta.Classi
             else
             {
                 if (
-                    Y > _start + _maxY + (_basso ? Height : 0)
+                    Y > _start + _maxY
                     ||
                     Y > Schermo.ActualHeight
                     )
                     Basso = false;
                 else if (
-                    Y < _start - _maxY + (_basso ? Height : 0)
+                    Y < _start - _maxY
                     ||
                     Y < 0
                     )
